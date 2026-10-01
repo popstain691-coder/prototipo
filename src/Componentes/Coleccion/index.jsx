@@ -1,8 +1,10 @@
+import './style.css'
+
 function Coleccion() {
 
   return (
     <>
-    diferentes
+    Coleccion
     </>
   )
 }
