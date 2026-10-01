@@ -1,10 +1,12 @@
-function usuario() {
+import './style.css'
+
+function Usuario() {
 
   return (
     <>
-    noobmaster54
+    Usuario
     </>
   )
 }
 
-export default usuario
+export default Usuario
