@@ -1,11 +1,12 @@
-function favoritos() {
+import './style.css'
 
+function Favoritos() {
 
   return (
     <>
-    ninguno
+    Favoritos
     </>
   )
 }
 
-export default favoritos
+export default Favoritos
