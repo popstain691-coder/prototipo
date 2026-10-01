@@ -1,11 +1,12 @@
+import './style.css'
 
-function inicio() {
+function Inicio() {
 
   return (
     <>
-    fuentew
+    Inicio
     </>
   )
 }
 
-export default inicio
+export default Inicio
