@@ -1,10 +1,12 @@
-function info() {
+import './style.css'
+
+function Info() {
 
   return (
     <>
-    poderoso
+    Info
     </>
   )
 }
 
-export default info
+export default Info
