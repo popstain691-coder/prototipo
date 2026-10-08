@@ -5,6 +5,14 @@ import './style.css'
 function Pokemon() {
     const { name } = useParams(); 
     const [datapoke, setDatapoke] = useState([]);
+    const [favoritos, setFavoritos] = useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem('favoritos') || '[]');
+        } catch {
+            return [];
+        }
+    });
+    const esFavorito = favoritos.some(p => p.id === datapoke.id);
 
     useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -13,6 +21,17 @@ function Pokemon() {
       .catch(error => console.error("Error:", error));
     }, [name]); 
     console.log(datapoke)
+
+     const toggleFavorito = () => {
+        let nuevosFavoritos;
+        if (esFavorito) {
+        nuevosFavoritos = favoritos.filter(p => p.id !== datapoke.id);
+        } else {
+        nuevosFavoritos = [...favoritos, { id: datapoke.id, nombre: datapoke.name }];
+        }
+        setFavoritos(nuevosFavoritos);
+        localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+    };
     
     if (!datapoke || !datapoke.id) return <p>Cargando...</p>;
     return (
@@ -36,6 +55,9 @@ function Pokemon() {
         <p>Ataque: {datapoke.stats[1].base_stat} Defensa: {datapoke.stats[2].base_stat}</p>
         <p>Ataque Especial: {datapoke.stats[3].base_stat} Defensa Especial: {datapoke.stats[4].base_stat}</p>
 
+         <button onClick={toggleFavorito}>
+            {esFavorito ? '❤️' : '🤍'}
+            </button>
         </div>
     )
 }
